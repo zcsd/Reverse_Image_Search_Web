@@ -38,6 +38,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
 }
 
 .main .title h3 {
@@ -93,16 +94,19 @@ body {
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 13.8px 21.8px 0 rgba(0, 0, 0, 0.19);
 }
 
-#image-result {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 13.8px 21.8px 0 rgba(0, 0, 0, 0.19);
+.image-box {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  align-items: center;
   max-height: 13.8rem;
+  max-width: 21.8rem;
 }
 
-#image-box {
-  position: relative;
-  width: auto;
-  float: left;
+#imgRes {
+  margin-top: 1rem;
   margin-bottom: 2rem;
+  align-items: center;
+  max-width: 21.8rem;
 }
 
 #image-display {

@@ -37,6 +37,8 @@ var imageResult = document.getElementById("image-result");
 var uploadCaption = document.getElementById("upload-caption");
 var predResult = document.getElementById("pred-result");
 
+var imgResult1, imgResult2, imgResult3, imgResult4, imgResult5;
+
 //========================================================================
 // Main button events
 //========================================================================
@@ -61,9 +63,13 @@ function clearImage() {
   // remove image sources and hide them
   imagePreview.src = "";
   predResult.innerHTML = "";
+  document.getElementById("img-result1").removeChild(imgResult1);
+  document.getElementById("img-result2").removeChild(imgResult2);
+  document.getElementById("img-result3").removeChild(imgResult3);
 
   hide(imagePreview);
   show(uploadCaption);
+  checkStatus();
 }
 
 function previewFile(file) {
@@ -121,6 +127,17 @@ function displayResult(data) {
   // display the result
   predResult.innerHTML = data.result;
   //show(predResult);
+  imgResult1 = new Image();
+  imgResult1.src = data.link1;
+  document.getElementById("img-result1").appendChild(imgResult1);
+
+  imgResult2 = new Image();
+  imgResult2.src = data.link2;
+  document.getElementById("img-result2").appendChild(imgResult2);
+
+  imgResult3 = new Image();
+  imgResult3.src = data.link3;
+  document.getElementById("img-result3").appendChild(imgResult3);
 }
 
 function hide(el) {
@@ -136,15 +153,19 @@ function show(el) {
 //========================================================================
 // Check AI server status
 //========================================================================
-fetch("https://ai.best360.tech/", {method: "GET"})
+checkStatus();
+
+function checkStatus() {
+  fetch("https://ai.best360.tech/", {method: "GET"})
   .then(resp => {
     if (resp.ok) {
       document.getElementById("server-status").innerHTML = "<span style='color: green;'>AI服务器状态正常</span>";
     } else {
-      document.getElementById("server-status").innerHTML = "<span style='color: red;'>AI服务器已下线，请联系管理员。</span>";
+      document.getElementById("server-status").innerHTML = "<span style='color: red;'>AI服务器已下线，请联系管理员</span>";
     }
   })
   .catch(err => {
     console.log("An error occured", err);
-    document.getElementById("server-status").innerHTML = "<span style='color: red;'>AI服务器已下线，请联系管理员。</span>";
+    document.getElementById("server-status").innerHTML = "<span style='color: red;'>AI服务器已下线，请联系管理员</span>";
   });
+}

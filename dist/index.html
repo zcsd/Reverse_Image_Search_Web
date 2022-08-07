@@ -12,9 +12,9 @@
     <div class="main">
 
       <div class="title">
-        <h3>以图搜图</h3>
+        <h3>以图搜图(功能展示)</h3>
         <p id="server-status">
-          <span style='color:blue;'>正在检查AI服务器状态</span>
+          <span style='color:blue;'>正在检查AI服务器状态 </span>   
         </p>
       </div>
     
@@ -26,17 +26,15 @@
         </label>
       </div>
 
-      <div style="margin-bottom: 2rem;">
+      <div style="margin-bottom: 1rem;">
         <input type="button" value="提交" class="button" onclick="submitImage();" />
         <input type="button" value="清空" class="button" onclick="clearImage();" />
       </div>
 
       <div id="pred-result"></div>
-    
-      <div id="image-box">
-        <img id="image-result" />
-      </div>
-
+      <div class="image-box" id="img-result1"></div>
+      <div class="image-box" id="img-result2"></div>
+      <div class="image-box" id="img-result3"></div>
     </div>
   </body>
   <footer>
