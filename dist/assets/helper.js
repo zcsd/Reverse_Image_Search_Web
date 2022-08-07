@@ -132,3 +132,19 @@ function show(el) {
   // show an element
   el.classList.remove("hidden");
 }
+
+//========================================================================
+// Check AI server status
+//========================================================================
+fetch("https://ai.best360.tech/", {method: "GET"})
+  .then(resp => {
+    if (resp.ok) {
+      document.getElementById("server-status").innerHTML = "<span style='color: green;'>AI服务器状态正常</span>";
+    } else {
+      document.getElementById("server-status").innerHTML = "<span style='color: red;'>AI服务器已下线，请联系管理员。</span>";
+    }
+  })
+  .catch(err => {
+    console.log("An error occured", err);
+    document.getElementById("server-status").innerHTML = "<span style='color: red;'>AI服务器已下线，请联系管理员。</span>";
+  });
