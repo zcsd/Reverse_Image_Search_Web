@@ -87,14 +87,14 @@ body {
 }
 
 .upload-box #image-preview {
-  max-width: 25.5rem;
-  max-height: 15.5rem;
+  max-width: 22rem;
+  max-height: 14rem;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 #image-result {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  max-height: 15.5rem;
+  max-height: 13.8rem;
 }
 
 #image-box {
@@ -105,8 +105,8 @@ body {
 }
 
 #image-display {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 16px 26px 0 rgba(0, 0, 0, 0.19);
-  max-height: 15.5rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 14px 22px 0 rgba(0, 0, 0, 0.19);
+  max-height: 13.8rem;
 }
 
 #image-display.loading {
