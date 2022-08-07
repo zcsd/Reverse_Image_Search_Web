@@ -33,10 +33,9 @@ function fileSelectHandler(e) {
 //========================================================================
 
 var imagePreview = document.getElementById("image-preview");
-var imageDisplay = document.getElementById("image-display");
+var imageResult = document.getElementById("image-result");
 var uploadCaption = document.getElementById("upload-caption");
 var predResult = document.getElementById("pred-result");
-var loader = document.getElementById("loader");
 
 //========================================================================
 // Main button events
@@ -46,16 +45,13 @@ function submitImage() {
   // action for the submit button
   console.log("submit");
 
-  if (!imageDisplay.src || !imageDisplay.src.startsWith("data")) {
-    window.alert("Please select an image before submit.");
+  if (!imagePreview.src || !imagePreview.src.startsWith("data")) {
+    window.alert("请在提交前上传一张图片");
     return;
   }
 
-  loader.classList.remove("hidden");
-  imageDisplay.classList.add("loading");
-
   // call the predict function of the backend
-  predictImage(imageDisplay.src);
+  predictImage(imagePreview.src);
 }
 
 function clearImage() {
@@ -64,16 +60,10 @@ function clearImage() {
 
   // remove image sources and hide them
   imagePreview.src = "";
-  imageDisplay.src = "";
   predResult.innerHTML = "";
 
   hide(imagePreview);
-  hide(imageDisplay);
-  hide(loader);
-  hide(predResult);
   show(uploadCaption);
-
-  imageDisplay.classList.remove("loading");
 }
 
 function previewFile(file) {
@@ -91,9 +81,8 @@ function previewFile(file) {
 
     // reset
     predResult.innerHTML = "";
-    imageDisplay.classList.remove("loading");
 
-    displayImage(reader.result, "image-display");
+    displayImage(reader.result, "image-preview");
   };
 }
 
@@ -102,7 +91,7 @@ function previewFile(file) {
 //========================================================================
 
 function predictImage(image) {
-  fetch("https://ai.best360.tech/", {
+  fetch("https://ai.best360.tech/cbir/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -130,10 +119,8 @@ function displayImage(image, id) {
 
 function displayResult(data) {
   // display the result
-  // imageDisplay.classList.remove("loading");
-  hide(loader);
   predResult.innerHTML = data.result;
-  show(predResult);
+  //show(predResult);
 }
 
 function hide(el) {

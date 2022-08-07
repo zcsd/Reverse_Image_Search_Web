@@ -58,13 +58,13 @@ body {
   opacity: 0.2;
 }
 
-/* Upload box */
+/* Upload box 16x10*/ 
 .upload-box {
   font-size: 0.8rem;
   color: #666666;
   cursor: pointer;
-  width: 16rem;
-  height: 10rem;
+  width: 26rem;
+  height: 16rem;
   background: #fff;
   border: 0.1rem dashed #838388;
   border-radius: 0.4rem;
@@ -87,14 +87,14 @@ body {
 }
 
 .upload-box #image-preview {
-  max-width: 14rem;
-  max-height: 8rem;
+  max-width: 25.5rem;
+  max-height: 15.5rem;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 #image-result {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  max-height: 20rem;
+  max-height: 15.5rem;
 }
 
 #image-box {
@@ -105,8 +105,8 @@ body {
 }
 
 #image-display {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  max-height: 20rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 16px 26px 0 rgba(0, 0, 0, 0.19);
+  max-height: 15.5rem;
 }
 
 #image-display.loading {
@@ -114,12 +114,8 @@ body {
 }
 
 #pred-result {
-  color: white;
+  color: black;
   font-size: 1.5rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 #loader {

@@ -10,6 +10,7 @@
   
   <body>
     <div class="main">
+
       <div class="title">
         <h3>以图搜图</h3>
         <p>
@@ -24,18 +25,18 @@
           <img id="image-preview" class="hidden" />
         </label>
       </div>
+
       <div style="margin-bottom: 2rem;">
         <input type="button" value="提交" class="button" onclick="submitImage();" />
         <input type="button" value="清空" class="button" onclick="clearImage();" />
       </div>
+
+      <div id="pred-result"></div>
     
       <div id="image-box">
-        <img id="image-display" />
-        <div id="pred-result" class="hidden"></div>
-        <svg id="loader" class="hidden" viewBox="0 0 32 32" width="32" height="32">
-          <circle id="spinner" cx="16" cy="16" r="14" fill="none"></circle>
-        </svg>
+        <img id="image-result" />
       </div>
+
     </div>
   </body>
   <footer>
