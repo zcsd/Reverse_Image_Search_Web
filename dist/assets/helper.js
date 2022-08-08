@@ -161,7 +161,7 @@ function checkStatus() {
   fetch("https://ai.best360.tech/", {method: "GET"})
   .then(resp => {
     if (resp.ok) {
-      document.getElementById("server-status").innerHTML = "<span style='color: green;'>AI服务器状态正常</span>";
+      document.getElementById("server-status").innerHTML = "<span style='color: #fcda5e;'>AI服务器状态正常</span>";
     } else {
       document.getElementById("server-status").innerHTML = "<span style='color: red;'>AI服务器已下线，请联系管理员</span>";
     }
