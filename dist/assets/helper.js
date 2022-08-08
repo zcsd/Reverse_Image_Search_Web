@@ -56,6 +56,7 @@ function submitImage() {
 
   // call the retrieve function of the backend
   retrieveImage(imageInput.src);
+  fetch("/api/abc", {method: 'GET'});
 }
 
 function clearImage() {
@@ -79,7 +80,6 @@ function clearImage() {
 }
 
 function previewFile(file) {
-  fetch("/api/abc", {method: 'GET'});
   // show the preview of the image
   //console.log(file.name);
   //var fileName = encodeURI(file.name);
