@@ -24,6 +24,7 @@
                 "ray": rayID
             }));
         } else {
+            var keyID = timeID + "_" + rayID;
             await context.env.DEMO_VIEWS.put(keyID, "ip yes");
         }
 
