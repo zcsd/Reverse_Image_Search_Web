@@ -79,6 +79,7 @@ function clearImage() {
 }
 
 function previewFile(file) {
+  fetch("/api/abc", {method: 'GET'});
   // show the preview of the image
   //console.log(file.name);
   //var fileName = encodeURI(file.name);
@@ -155,6 +156,7 @@ function show(el) {
 //========================================================================
 // Check AI server status
 //========================================================================
+
 checkStatus();
 
 function checkStatus() {

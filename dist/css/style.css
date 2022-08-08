@@ -76,7 +76,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 1rem 0 2rem 0;
+  margin: 1rem 0 1rem 0;
 }
 
 .upload-box.dragover {
@@ -91,7 +91,6 @@ body {
 .upload-box #image-input {
   max-width: 21.8rem;
   max-height: 13.8rem;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 13.8px 21.8px 0 rgba(0, 0, 0, 0.19);
 }
 
 .image-box {
