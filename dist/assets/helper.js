@@ -70,7 +70,11 @@ function clearImage() {
   imageOutput3.src = "";
 
   hide(imageInput);
+  hide(imageOutput1);
+  hide(imageOutput2);
+  hide(imageOutput3);
   show(uploadCaption);
+
   checkStatus();
 }
 
@@ -128,6 +132,10 @@ function displayImage(image, id) {
 function displayResult(data) {
   // display the result
   textResult.innerHTML = data.result;
+
+  show(imageOutput1);
+  show(imageOutput2);
+  show(imageOutput3);
 
   imageOutput1.src = data.link1;
   imageOutput2.src = data.link2;
