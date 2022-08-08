@@ -32,12 +32,12 @@ function fileSelectHandler(e) {
 // Web page elements for functions to use
 //========================================================================
 
-var imagePreview = document.getElementById("image-preview");
-var imageResult = document.getElementById("image-result");
+var imageInput = document.getElementById("image-input");
 var uploadCaption = document.getElementById("upload-caption");
-var predResult = document.getElementById("pred-result");
-
-var imgResult1, imgResult2, imgResult3, imgResult4, imgResult5;
+var textResult = document.getElementById("text-result");
+var imageOutput1 = document.getElementById("image-output1");
+var imageOutput2 = document.getElementById("image-output2");
+var imageOutput3 = document.getElementById("image-output3");
 
 //========================================================================
 // Main button events
@@ -47,13 +47,15 @@ function submitImage() {
   // action for the submit button
   console.log("submit");
 
-  if (!imagePreview.src || !imagePreview.src.startsWith("data")) {
+  if (!imageInput.src || !imageInput.src.startsWith("data")) {
     window.alert("请在提交前上传一张图片");
     return;
   }
 
-  // call the predict function of the backend
-  predictImage(imagePreview.src);
+  checkStatus();
+
+  // call the retrieve function of the backend
+  retrieveImage(imageInput.src);
 }
 
 function clearImage() {
@@ -61,34 +63,34 @@ function clearImage() {
   fileSelect.value = "";
 
   // remove image sources and hide them
-  imagePreview.src = "";
-  predResult.innerHTML = "";
-  document.getElementById("img-result1").removeChild(imgResult1);
-  document.getElementById("img-result2").removeChild(imgResult2);
-  document.getElementById("img-result3").removeChild(imgResult3);
+  imageInput.src = "";
+  textResult.innerHTML = "";
+  imageOutput1.src = "";
+  imageOutput2.src = "";
+  imageOutput3.src = "";
 
-  hide(imagePreview);
+  hide(imageInput);
   show(uploadCaption);
   checkStatus();
 }
 
 function previewFile(file) {
   // show the preview of the image
-  console.log(file.name);
-  var fileName = encodeURI(file.name);
+  //console.log(file.name);
+  //var fileName = encodeURI(file.name);
 
   var reader = new FileReader();
   reader.readAsDataURL(file);
   reader.onloadend = () => {
-    imagePreview.src = URL.createObjectURL(file);
+    imageInput.src = URL.createObjectURL(file);
 
-    show(imagePreview);
+    show(imageInput);
     hide(uploadCaption);
 
     // reset
-    predResult.innerHTML = "";
+    textResult.innerHTML = "";
 
-    displayImage(reader.result, "image-preview");
+    displayImage(reader.result, "image-input");
   };
 }
 
@@ -96,7 +98,7 @@ function previewFile(file) {
 // Helper functions
 //========================================================================
 
-function predictImage(image) {
+function retrieveImage(image) {
   fetch("https://ai.best360.tech/cbir/", {
     method: "POST",
     headers: {
@@ -125,19 +127,11 @@ function displayImage(image, id) {
 
 function displayResult(data) {
   // display the result
-  predResult.innerHTML = data.result;
-  //show(predResult);
-  imgResult1 = new Image();
-  imgResult1.src = data.link1;
-  document.getElementById("img-result1").appendChild(imgResult1);
+  textResult.innerHTML = data.result;
 
-  imgResult2 = new Image();
-  imgResult2.src = data.link2;
-  document.getElementById("img-result2").appendChild(imgResult2);
-
-  imgResult3 = new Image();
-  imgResult3.src = data.link3;
-  document.getElementById("img-result3").appendChild(imgResult3);
+  imageOutput1.src = data.link1;
+  imageOutput2.src = data.link2;
+  imageOutput3.src = data.link3;
 }
 
 function hide(el) {

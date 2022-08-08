@@ -22,7 +22,7 @@
         <input id="file-upload" class="hidden" type="file" accept="image/x-png,image/gif,image/jpeg" />
         <label for="file-upload" id="file-drag" class="upload-box">
           <div id="upload-caption">拖拽图片到这里或者点击选择</div>
-          <img id="image-preview" class="hidden" />
+          <img id="image-input" class="hidden" />
         </label>
       </div>
 
@@ -31,10 +31,18 @@
         <input type="button" value="清空" class="button" onclick="clearImage();" />
       </div>
 
-      <div id="pred-result"></div>
-      <div class="image-box" id="img-result1"></div>
-      <div class="image-box" id="img-result2"></div>
-      <div class="image-box" id="img-result3"></div>
+      <div id="text-result"></div>
+
+      <div class="image-box">
+        <img id="image-output1"/>
+      </div>
+      <div class="image-box">
+        <img id="image-output2"/>
+      </div>
+      <div class="image-box">
+        <img id="image-output3"/>
+      </div>
+
     </div>
   </body>
   <footer>
