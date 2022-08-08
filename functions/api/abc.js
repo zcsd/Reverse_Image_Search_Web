@@ -13,20 +13,15 @@
         date.setHours(date.getHours() + 8);
         var timeID = date.toISOString().replace(/T/, '').replace(/Z/, '').replace(/-/g,'').replace(/:/g, '').replace('.', '');
 
-        if (ip != "43.230.96.80") {
-            var keyID = timeID + "_" + rayID;
-            await context.env.DEMO_VIEWS.put(keyID, JSON.stringify({
-                "city": city,
-                "country": country,
-                "ip": ip,
-                "ua": ua,
-                "time": timeID,
-                "ray": rayID
-            }));
-        } else {
-            var keyID = timeID + "_" + rayID;
-            await context.env.DEMO_VIEWS.put(keyID, "ip yes");
-        }
+        var keyID = timeID + "_" + rayID;
+        await context.env.DEMO_VIEWS.put(keyID, JSON.stringify({
+            "city": city,
+            "country": country,
+            "ip": ip,
+            "ua": ua,
+            "time": timeID,
+            "ray": rayID
+        }));
 
         body = {"ok": true};
         options = { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8' } };
