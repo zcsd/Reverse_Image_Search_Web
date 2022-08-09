@@ -39,6 +39,8 @@ var textResult = document.getElementById("text-result");
 var imageOutput1 = document.getElementById("image-output1");
 var imageOutput2 = document.getElementById("image-output2");
 var imageOutput3 = document.getElementById("image-output3");
+var imageOutput4 = document.getElementById("image-output4");
+var imageOutput5 = document.getElementById("image-output5");
 
 //========================================================================
 // Main button events
@@ -81,11 +83,15 @@ function clearImage() {
   imageOutput1.src = "";
   imageOutput2.src = "";
   imageOutput3.src = "";
+  imageOutput4.src = "";
+  imageOutput5.src = "";
 
   hide(imageInput);
   hide(imageOutput1);
   hide(imageOutput2);
   hide(imageOutput3);
+  hide(imageOutput4);
+  hide(imageOutput5);
   show(uploadCaption);
 
   checkStatus();
@@ -152,10 +158,14 @@ function displayResult(data) {
   show(imageOutput1);
   show(imageOutput2);
   show(imageOutput3);
+  show(imageOutput4);
+  show(imageOutput5);
 
   imageOutput1.src = data.link1;
   imageOutput2.src = data.link2;
   imageOutput3.src = data.link3;
+  imageOutput4.src = data.link4;
+  imageOutput5.src = data.link5;
 }
 
 function hide(el) {
