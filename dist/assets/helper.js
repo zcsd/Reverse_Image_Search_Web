@@ -32,6 +32,7 @@ function fileSelectHandler(e) {
 // Web page elements for functions to use
 //========================================================================
 
+var keyInput = document.getElementById("key-input");
 var imageInput = document.getElementById("image-input");
 var uploadCaption = document.getElementById("upload-caption");
 var textResult = document.getElementById("text-result");
@@ -49,6 +50,17 @@ function submitImage() {
 
   if (!imageInput.src || !imageInput.src.startsWith("data")) {
     window.alert("请在提交前上传一张图片");
+    return;
+  }
+
+  if (!keyInput.value) {
+    window.alert("请在提交前输入密钥");
+    return;
+  } 
+
+  if (keyInput.value.length > 10) {
+    keyInput.value = "";
+    window.alert("密钥长度不能超过10个字符");
     return;
   }
 
@@ -109,18 +121,21 @@ function retrieveImage(image) {
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify(image)
+    body: JSON.stringify({"key": keyInput.value, "image": image})
   })
-    .then(resp => {
-      if (resp.ok)
-        resp.json().then(data => {
-          displayResult(data);
-        });
+    .then(response => response.json())
+    .then(data => {
+      if (data.ok) {
+        displayResult(data);
+      } else {
+        textResult.innerHTML = data.result;
+        keyInput.value = "";
+      }
     })
-    .catch(err => {
-      console.log("An error occured", err.message);
-      window.alert("Oops! Something went wrong.");
-    });
+      .catch(err => {
+        console.log("An error occured", err.message);
+        window.alert("Oops! Something went wrong.");
+      });
 }
 
 function displayImage(image, id) {
