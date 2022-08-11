@@ -161,11 +161,11 @@ function displayResult(data) {
   show(imageOutput4);
   show(imageOutput5);
 
-  imageOutput1.src = data.link1;
-  imageOutput2.src = data.link2;
-  imageOutput3.src = data.link3;
-  imageOutput4.src = data.link4;
-  imageOutput5.src = data.link5;
+  imageOutput1.src = data.image1;
+  imageOutput2.src = data.image2;
+  imageOutput3.src = data.image3;
+  imageOutput4.src = data.image4;
+  imageOutput5.src = data.image5;
 }
 
 function hide(el) {
@@ -188,7 +188,7 @@ function checkStatus() {
   fetch("https://ai.best360.tech/", {method: "GET"})
   .then(resp => {
     if (resp.ok) {
-      document.getElementById("server-status").innerHTML = "<span style='color: #fcda5e;'>AI服务器状态正常</span>";
+      document.getElementById("server-status").innerHTML = "<span style='color: #fcda5e;'>AI服务器（CPU: i5-9600K， RAM: 32GB）状态正常</span>";
     } else {
       document.getElementById("server-status").innerHTML = "<span style='color: red;'>AI服务器已下线，请联系管理员</span>";
     }
