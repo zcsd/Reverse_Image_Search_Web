@@ -48,7 +48,6 @@ var imageOutput5 = document.getElementById("image-output5");
 
 function submitImage() {
   // action for the submit button
-  console.log("submit");
 
   if (!imageInput.src || !imageInput.src.startsWith("data")) {
     window.alert("请在提交前上传一张图片");
@@ -101,20 +100,7 @@ function previewFile(file) {
   // show the preview of the image
   //console.log(file.name);
   //var fileName = encodeURI(file.name);
-
-  var reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onloadend = () => {
-    imageInput.src = URL.createObjectURL(file);
-
-    show(imageInput);
-    hide(uploadCaption);
-
-    // reset
-    textResult.innerHTML = "";
-
-    displayImage(reader.result, "image-input");
-  };
+  compressImage(file);
 }
 
 //========================================================================
@@ -197,4 +183,53 @@ function checkStatus() {
     console.log("An error occured", err);
     document.getElementById("server-status").innerHTML = "<span style='color: red;'>AI服务器已下线，请联系管理员</span>";
   });
+}
+
+//========================================================================
+// Compress input image
+//========================================================================
+
+function compressImage (file) {
+  var options = {
+    file: file,
+    quality: this.quality,
+    mimeType: this.mimeType,
+    maxWidth: this.maxWidth,
+    maxHeight: this.maxHeight,
+    width: this.width,
+    height: this.height,
+    minWidth: this.minWidth,
+    minHeight: this.minHeight,
+    convertSize: this.convertSize,
+    loose: this.loose,
+    redressOrientation: this.redressOrientation,
+
+    beforeCompress: function (result) {
+      //console.log('Original file size:', (result.size/1024).toFixed(1), 'KB');
+    },
+
+    success: function (result) {
+      //console.log('Compressed file size:', (result.size/1024).toFixed(1), 'KB');
+      //console.log('Compress ratio： ', ((file.size - result.size) / file.size * 100).toFixed(2) + '%');
+      var reader = new FileReader();
+      reader.readAsDataURL(result);
+      reader.onloadend = () => {
+        imageInput.src = URL.createObjectURL(result);
+        
+        show(imageInput);
+        hide(uploadCaption);
+    
+        // reset
+        textResult.innerHTML = "";
+    
+        displayImage(reader.result, "image-input");
+      };
+    },
+
+    error: function (msg) {
+      console.error(msg);
+    }
+  };
+
+  new ImageCompressor(options);
 }
