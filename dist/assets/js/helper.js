@@ -174,7 +174,7 @@ function checkStatus() {
   fetch("https://ai.best360.tech/", {method: "GET"})
   .then(resp => {
     if (resp.ok) {
-      document.getElementById("server-status").innerHTML = "<span style='color: #fcda5e;'>AI服务器（CPU: i5-9600K RAM: 32GB）状态正常</span>";
+      document.getElementById("server-status").innerHTML = "<span style='color: #fcda5e;'>AI服务器(CPU: i5-9600K RAM: 32GB)状态正常</span>";
     } else {
       document.getElementById("server-status").innerHTML = "<span style='color: red;'>AI服务器已下线，请联系管理员</span>";
     }
@@ -192,14 +192,14 @@ function checkStatus() {
 function compressImage (file) {
   var options = {
     file: file,
-    quality: this.quality,
-    mimeType: this.mimeType,
-    maxWidth: this.maxWidth,
-    maxHeight: this.maxHeight,
+    quality: 0.6,
+    mimeType: 'image/jpeg',
+    maxWidth: 600,
+    maxHeight: 600,
     width: this.width,
     height: this.height,
-    minWidth: this.minWidth,
-    minHeight: this.minHeight,
+    minWidth: 100,
+    minHeight: 100,
     convertSize: this.convertSize,
     loose: this.loose,
     redressOrientation: this.redressOrientation,
