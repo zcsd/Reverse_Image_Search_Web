@@ -174,7 +174,7 @@ function checkStatus() {
   fetch("https://aihk.best360.tech/", {method: "GET"})
   .then(resp => {
     if (resp.ok) {
-      document.getElementById("server-status").innerHTML = "<span style='color: #fcda5e;'>AI服务器(CPU: i5-9600K RAM: 32GB)状态正常</span>";
+      document.getElementById("server-status").innerHTML = "<span style='color: #fcda5e;'>AI服务器(CPU:Xeon@2.8GHz RAM:8GB)状态正常</span>";
     } else {
       document.getElementById("server-status").innerHTML = "<span style='color: red;'>AI服务器已下线，请联系管理员</span>";
     }
