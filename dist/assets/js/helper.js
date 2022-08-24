@@ -108,7 +108,7 @@ function previewFile(file) {
 //========================================================================
 
 function retrieveImage(image) {
-  fetch("https://ai.best360.tech/cbir/", {
+  fetch("https://aihk.best360.tech/cbir/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -171,7 +171,7 @@ function show(el) {
 checkStatus();
 
 function checkStatus() {
-  fetch("https://ai.best360.tech/", {method: "GET"})
+  fetch("https://aihk.best360.tech/", {method: "GET"})
   .then(resp => {
     if (resp.ok) {
       document.getElementById("server-status").innerHTML = "<span style='color: #fcda5e;'>AI服务器(CPU: i5-9600K RAM: 32GB)状态正常</span>";
