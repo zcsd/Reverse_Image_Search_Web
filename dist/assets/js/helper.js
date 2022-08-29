@@ -1,3 +1,4 @@
+var baseURL = "https://aihk.best360.tech/";
 //========================================================================
 // Drag and drop image handling
 //========================================================================
@@ -108,7 +109,7 @@ function previewFile(file) {
 //========================================================================
 
 function retrieveImage(image) {
-  fetch("https://aihk.best360.tech/cbir/", {
+  fetch(baseURL+"cbir/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -171,10 +172,11 @@ function show(el) {
 checkStatus();
 
 function checkStatus() {
-  fetch("https://aihk.best360.tech/", {method: "GET"})
-  .then(resp => {
-    if (resp.ok) {
-      document.getElementById("server-status").innerHTML = "<span style='color: #fcda5e;'>AI服务器(CPU:Xeon@2.8GHz RAM:8GB)状态正常</span>";
+  fetch(baseURL, {method: "GET"})
+  .then(response => response.json())
+  .then(data => {
+    if (data.ok) {
+      document.getElementById("server-status").innerHTML = "<span style='color: #fcda5e;'>AI服务器(CPU:Xeon@2.8GHz RAM:8GB)状态正常<br>图片库规模: " +  data.entities_num + "</span>";
     } else {
       document.getElementById("server-status").innerHTML = "<span style='color: red;'>AI服务器已下线, 请联系管理员</span>";
     }
