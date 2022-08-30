@@ -1,4 +1,3 @@
-var baseURL = "https://aihk.best360.tech/";
 //========================================================================
 // Drag and drop image handling
 //========================================================================
@@ -66,7 +65,7 @@ function submitImage() {
     return;
   }
 
-  checkStatus();
+  checkServer();
 
   // call the retrieve function of the backend
   retrieveImage(imageInput.src);
@@ -94,7 +93,7 @@ function clearImage() {
   hide(imageOutput5);
   show(uploadCaption);
 
-  checkStatus();
+  checkServer();
 }
 
 function previewFile(file) {
@@ -168,15 +167,30 @@ function show(el) {
 //========================================================================
 // Check AI server status
 //========================================================================
+var baseURL
 
-checkStatus();
+//console.log(document.getElementById("server").value)
 
-function checkStatus() {
+checkServer();
+
+function checkServer(){
+  if (document.getElementById("server").value == "server_wo_gpu") {
+      baseURL = "https://aihk.best360.tech/"; // gcp hk withoug gpu
+  } else if (document.getElementById("server").value == "server_w_gpu") {
+      baseURL = "https://aisg.best360.tech/"; // gcp sg with gpu
+  } else if (document.getElementById("server").value == "dev_server") {
+      baseURL = "https://ai.best360.tech/"; //  dev server
+  }
+  checkServerStatus();
+}
+
+function checkServerStatus() {
   fetch(baseURL, {method: "GET"})
   .then(response => response.json())
   .then(data => {
     if (data.ok) {
-      document.getElementById("server-status").innerHTML = "<span style='color: #fcda5e;'>AI服务器(CPU:Xeon@2.8GHz RAM:8GB)状态正常<br>图片库规模: " +  data.entities_num + "</span>";
+      document.getElementById("server-status").innerHTML = "<span style='color: #fcda5e;'>AI服务器状态正常<br>CPU: "
+       + data.cpu + "<br>内存: " + data.memory + "<br>显卡: " + data.gpu + "<br>图片库规模: " +  data.entities_num + "</span>";
     } else {
       document.getElementById("server-status").innerHTML = "<span style='color: red;'>AI服务器已下线, 请联系管理员</span>";
     }
