@@ -181,6 +181,7 @@ function checkServer(){
   } else if (document.getElementById("server").value == "dev_server") {
       baseURL = "https://ai.best360.tech/"; //  dev server
   }
+  document.getElementById("server-status").innerHTML = "<span style='color: green;'>正在从服务器获取信息...</span>";
   checkServerStatus();
 }
 
