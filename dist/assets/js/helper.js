@@ -175,7 +175,7 @@ checkServer();
 
 function checkServer(){
   if (document.getElementById("server").value == "server_wo_gpu") {
-      baseURL = "http://34.92.123.47:6789/"; // gcp hk withoug gpu //https://ai-hk.best360.tech/
+      baseURL = "https://ai-hk.best360.tech/"; // gcp hk withoug gpu //
   } else if (document.getElementById("server").value == "server_w_gpu") {
       baseURL = "https://ai-ly.best360.tech/"; // ly sg with gpu
   } else if (document.getElementById("server").value == "dev_server") {
