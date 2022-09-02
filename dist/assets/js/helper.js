@@ -64,9 +64,6 @@ function submitImage() {
     window.alert("密钥长度不能超过10个字符");
     return;
   }
-
-  checkServer();
-
   // call the retrieve function of the backend
   retrieveImage(imageInput.src);
   fetch("/api/abc", {method: 'GET'});
