@@ -175,11 +175,11 @@ checkServer();
 
 function checkServer(){
   if (document.getElementById("server").value == "server_wo_gpu") {
-      baseURL = "https://aihk.best360.tech/"; // gcp hk withoug gpu
+      baseURL = "http://34.92.123.47:6789/"; // gcp hk withoug gpu //https://ai-hk.best360.tech/
   } else if (document.getElementById("server").value == "server_w_gpu") {
-      baseURL = "https://aisg.best360.tech/"; // gcp sg with gpu
+      baseURL = "https://ai-ly.best360.tech/"; // ly sg with gpu
   } else if (document.getElementById("server").value == "dev_server") {
-      baseURL = "https://ai.best360.tech/"; //  dev server
+      baseURL = "https://ai-zz.best360.tech/"; // my dev server
   }
   document.getElementById("server-status").innerHTML = "<span style='color: green;'>正在从服务器获取信息...</span>";
   checkServerStatus();
