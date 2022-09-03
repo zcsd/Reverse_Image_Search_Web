@@ -1,4 +1,56 @@
 //========================================================================
+// Language Setup
+//========================================================================
+
+var language = navigator.language || navigator.userLanguage
+
+language = language.substr(0, 2);
+
+if (language != "zh") {
+    language = "en";
+}
+
+displayText = {
+  "zh": {title: "以图搜图(功能展示)",
+         statusCheck: "正在检查AI服务器状态...",
+         uploadCaption: "拖拽图片到这里或者点击选择",
+         submitButton: "提交",
+         clearButton: "清除",
+         keyInput: "请输入密钥",
+         imageUploadAlert: "请在提交前上传一张图片",
+         keyInputAlert: "请在提交前输入密钥",
+         keyLengthAlert: "密钥长度不能超过10个字符",
+         serverStatusOK: "AI服务器状态正常",
+         serverStatusError: "AI服务器已下线, 请联系管理员",
+         fetchError: "服务器错误，请再次尝试或联系管理员",
+         embeddingTime: "特征提取时间: ",
+         searchTime: "搜索时间: ",
+        },
+  "en": {title: "Image Search (Demo)",
+         statusCheck: "Checking AI Server Status...",
+         uploadCaption: "Drag image here or click to select",
+         submitButton: "Submit",
+         clearButton: "Clear",
+         keyInput: "Enter Key",
+         imageUploadAlert: "Please upload an image before submitting",
+         keyInputAlert: "Please enter a key before submitting",
+         keyLengthAlert: "Key length cannot exceed 10 characters",
+         serverStatusOK: "AI Server Status OK",
+         serverStatusError: "AI Server is offline, please contact administrator",
+         fetchError: "Server error, please try again or contact administrator",
+         embeddingTime: "Embedding Time: ",
+         searchTime: "Search Time: ",
+        },
+}
+
+document.getElementById("title").innerHTML = displayText[language].title;
+document.getElementById("status-check").innerHTML = displayText[language].statusCheck;
+document.getElementById("upload-caption").innerHTML = displayText[language].uploadCaption;
+document.getElementById("submit-button").value = displayText[language].submitButton;
+document.getElementById("clear-button").value = displayText[language].clearButton;
+document.getElementById("key-input").placeholder = displayText[language].keyInput;
+
+//========================================================================
 // Drag and drop image handling
 //========================================================================
 
@@ -50,18 +102,18 @@ function submitImage() {
   // action for the submit button
 
   if (!imageInput.src || !imageInput.src.startsWith("data")) {
-    window.alert("请在提交前上传一张图片");
+    window.alert(displayText[language].imageUploadAlert);
     return;
   }
 
   if (!keyInput.value) {
-    window.alert("请在提交前输入密钥");
+    window.alert(displayText[language].keyInputAlert);
     return;
   } 
 
   if (keyInput.value.length > 10) {
     keyInput.value = "";
-    window.alert("密钥长度不能超过10个字符");
+    window.alert(displayText[language].keyLengthAlert);
     return;
   }
   // call the retrieve function of the backend
@@ -89,8 +141,6 @@ function clearImage() {
   hide(imageOutput4);
   hide(imageOutput5);
   show(uploadCaption);
-
-  checkServer();
 }
 
 function previewFile(file) {
@@ -123,7 +173,7 @@ function retrieveImage(image) {
     })
       .catch(err => {
         console.log("An error occured", err.message);
-        window.alert("Oops! Something went wrong.");
+        window.alert(displayText[language].fetchError);
       });
 }
 
@@ -136,7 +186,7 @@ function displayImage(image, id) {
 
 function displayResult(data) {
   // display the result
-  textResult.innerHTML = data.result;
+  textResult.innerHTML = displayText[language].embeddingTime + data.embedding_time + "ms   " + displayText[language].searchTime + data.search_time + "ms";
 
   show(imageOutput1);
   show(imageOutput2);
@@ -164,9 +214,7 @@ function show(el) {
 //========================================================================
 // Check AI server status
 //========================================================================
-var baseURL
-
-//console.log(document.getElementById("server").value)
+var baseURL = "";
 
 checkServer();
 
@@ -178,7 +226,8 @@ function checkServer(){
   } else if (document.getElementById("server").value == "dev_server") {
       baseURL = "https://ai-zz.best360.tech/"; // my dev server
   }
-  document.getElementById("server-status").innerHTML = "<span style='color: green;'>正在从服务器获取信息...</span>";
+  clearImage();
+  document.getElementById("server-status").innerHTML = "<span style='color: green;'>" + displayText[language].statusCheck + "</span>";
   checkServerStatus();
 }
 
@@ -187,15 +236,15 @@ function checkServerStatus() {
   .then(response => response.json())
   .then(data => {
     if (data.ok) {
-      document.getElementById("server-status").innerHTML = "<span style='color: #fcda5e;'>AI服务器状态正常<br>CPU: "
-       + data.cpu + "<br>内存: " + data.memory + "<br>显卡: " + data.gpu + "<br>图片库规模: " +  data.entities_num + "</span>";
+      document.getElementById("server-status").innerHTML = "<span style='color: #fcda5e;'>" + displayText[language].serverStatusOK + "<br>CPU: "
+       + data.cpu + "<br>RAM: " + data.memory + "<br>GPU: " + data.gpu + "<br>Number of Images: " +  data.entities_num + "</span>";
     } else {
-      document.getElementById("server-status").innerHTML = "<span style='color: red;'>AI服务器已下线, 请联系管理员</span>";
+      document.getElementById("server-status").innerHTML = "<span style='color: red;'>" + displayText[language].serverStatusError + "</span>";
     }
   })
   .catch(err => {
     console.log("An error occured", err);
-    document.getElementById("server-status").innerHTML = "<span style='color: red;'>AI服务器已下线, 请联系管理员</span>";
+    document.getElementById("server-status").innerHTML = "<span style='color: red;'>" + displayText[language].serverStatusError + "</span>";
   });
 }
 

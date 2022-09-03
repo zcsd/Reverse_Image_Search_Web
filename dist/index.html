@@ -15,29 +15,29 @@
     <div class="main">
 
       <div class="title">
-        <h3>以图搜图(功能展示)</h3>
+        <h3 id="title"></h3>
         <select id="server" class="option-input" name="server" onchange="checkServer();">
           <option value="server_wo_gpu">Intel Xeon @ 2.8GHz (w/o GPU)</option>
           <option value="server_w_gpu">Intel i5-12600K @ 3.7GHz (with GPU)</option>
           <option value="dev_server">DEV Server (w/o GPU)</option>
         </select>
         <p id="server-status">
-          <span style='color:#fcda5e;'>正在检查AI服务器状态 </span>   
+          <span id='status-check' style='color:#fcda5e;'></span>   
         </p>
       </div>
     
       <div class="panel">
         <input id="file-upload" class="hidden" type="file" accept="image/x-png,image/gif,image/jpeg" />
         <label for="file-upload" id="file-drag" class="upload-box">
-          <div id="upload-caption">拖拽图片到这里或者点击选择</div>
+          <div id="upload-caption"></div>
           <img id="image-input" class="hidden" />
         </label>
       </div>
 
       <div style="margin-bottom: 1rem;">
-        <input type="text" id="key-input" name="key" class="text-input" size="10" placeholder="请填写密钥" pattern="[A-Za-z0-9]{5,10}" required>
-        <input type="button" value="提交" class="button" onclick="submitImage();" />
-        <input type="button" value="清空" class="button" onclick="clearImage();" />
+        <input type="text" id="key-input" name="key" class="text-input" size="10" pattern="[A-Za-z0-9]{5,10}" required>
+        <input type="button" id="submit-button" class="button" onclick="submitImage();" />
+        <input type="button" id="clear-button" class="button" onclick="clearImage();" />
       </div>
 
       <div id="text-result"></div>
