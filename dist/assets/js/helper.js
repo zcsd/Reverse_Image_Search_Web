@@ -155,7 +155,7 @@ function previewFile(file) {
 //========================================================================
 
 function retrieveImage(image) {
-  fetch(baseURL+"cbir/", {
+  fetch(baseURL+"search/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -232,7 +232,7 @@ function checkServer(){
 }
 
 function checkServerStatus() {
-  fetch(baseURL, {method: "GET"})
+  fetch(baseURL+'status/', {method: "GET"})
   .then(response => response.json())
   .then(data => {
     if (data.ok) {
